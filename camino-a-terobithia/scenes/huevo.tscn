@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr58wgkxrct6n"]
+
+[ext_resource type="Texture2D" uid="uid://c0eg3ild2n67q" path="res://Assets/Huevos/Huevo.png" id="1_blq7l"]
+
+[node name="Huevo" type="Sprite2D"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_blq7l")

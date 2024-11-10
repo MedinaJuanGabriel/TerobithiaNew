@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://6tktwxns42wv"]
+
+[ext_resource type="Texture2D" uid="uid://7c5ej2mjri4s" path="res://Assets/teroalarma.png" id="1_sqnc2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_20mpf"]
+radius = 41.0
+height = 144.0
+
+[node name="Node2D" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_20mpf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sqnc2")

@@ -1,0 +1,128 @@
+[gd_scene load_steps=10 format=3 uid="uid://c1s0t4chcknpr"]
+
+[ext_resource type="Script" path="res://scripts/TeroAereo.gd" id="1_ruedy"]
+[ext_resource type="Texture2D" uid="uid://h6p0aaj3ny8v" path="res://Assets/tero vuela.png" id="1_sjmy5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7eppt"]
+radius = 17.3952
+height = 58.3048
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1xejl"]
+radius = 15.8522
+height = 52.5838
+
+[sub_resource type="Animation" id="Animation_06t34"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(271, 560)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4.5, 4.5)]
+}
+
+[sub_resource type="Animation" id="Animation_ycbp0"]
+resource_name = "Terrestre_conjunto"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(271, 560), Vector2(476, 893), Vector2(1513, 891), Vector2(476, 893), Vector2(271, 560)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.03333, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(4.5, 4.5), Vector2(-4.5, 4.5), Vector2(4.5, 4.5)]
+}
+
+[sub_resource type="Animation" id="Animation_ro640"]
+resource_name = "new_animation"
+
+[sub_resource type="Animation" id="Animation_ii5xc"]
+resource_name = "vuelo_ataque_aereo"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.966667, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(271, 560), Vector2(895, 204), Vector2(271, 560)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m3gsb"]
+_data = {
+"RESET": SubResource("Animation_06t34"),
+"Terrestre_conjunto": SubResource("Animation_ycbp0"),
+"new_animation": SubResource("Animation_ro640"),
+"vuelo_ataque_aereo": SubResource("Animation_ii5xc")
+}
+
+[node name="TeroAereo" type="CharacterBody2D"]
+position = Vector2(271, 560)
+scale = Vector2(4.5, 4.5)
+script = ExtResource("1_ruedy")
+metadata/Terovuelascript = false
+
+[node name="Area2D" type="Area2D" parent="."]
+rotation = 0.127409
+scale = Vector2(0.888889, 0.888889)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1.86727, -0.951773)
+scale = Vector2(0.7, 0.9)
+shape = SubResource("CapsuleShape2D_7eppt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_sjmy5")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.77778, -0.666667)
+rotation = 0.137272
+scale = Vector2(0.7, 0.9)
+shape = SubResource("CapsuleShape2D_1xejl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m3gsb")
+}
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

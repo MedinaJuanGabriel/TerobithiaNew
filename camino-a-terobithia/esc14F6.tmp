@@ -1,0 +1,54 @@
+[gd_scene load_steps=11 format=3 uid="uid://dhcgkp1umiljy"]
+
+[ext_resource type="Script" path="res://escena_principal.gd" id="1_kyryh"]
+[ext_resource type="Texture2D" uid="uid://c350y6n47rnql" path="res://Assets/Fondo/Fondodia.png" id="2_pyms4"]
+[ext_resource type="Texture2D" uid="uid://bknjj6wsbu0jg" path="res://Assets/prototipo assets/Nido común.png" id="3_nfu20"]
+[ext_resource type="PackedScene" uid="uid://c0s5jyq6gm3aq" path="res://piso/rama.tscn" id="4_og3tn"]
+[ext_resource type="Script" path="res://path_2d.gd" id="5_5svby"]
+[ext_resource type="PackedScene" uid="uid://c1s0t4chcknpr" path="res://Teros/terovuela.tscn" id="5_bhd4n"]
+[ext_resource type="PackedScene" uid="uid://dtwny4fi1er08" path="res://Teros/terotierra.tscn" id="6_mu2ye"]
+[ext_resource type="Texture2D" uid="uid://dq66b3cbpkel" path="res://Assets/Fondo/Sol.png" id="8_bymag"]
+[ext_resource type="PackedScene" uid="uid://c4y12ony026jx" path="res://piso/Plataforma.tscn" id="8_ttrht"]
+
+[sub_resource type="Curve2D" id="Curve2D_3f106"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 215, 270, 0, 0, 0, 0, 352, 229, 0, 0, 0, 0, 550, 189, 0, 0, 0, 0, 702, 168, 0, 0, 0, 0, 898, 116)
+}
+point_count = 5
+
+[node name="Escena_principal" type="Node2D"]
+script = ExtResource("1_kyryh")
+
+[node name="FondoCompleto" type="Sprite2D" parent="."]
+position = Vector2(720, 512)
+scale = Vector2(0.499653, 0.498055)
+texture = ExtResource("2_pyms4")
+
+[node name="Sol" type="Sprite2D" parent="FondoCompleto"]
+position = Vector2(-2.00146, 0)
+scale = Vector2(1.00139, 1)
+texture = ExtResource("8_bymag")
+
+[node name="Rama" parent="." instance=ExtResource("4_og3tn")]
+position = Vector2(-71, -136)
+rotation = -0.0698132
+
+[node name="NidoComún" type="Sprite2D" parent="."]
+position = Vector2(680.001, 911.557)
+scale = Vector2(0.401959, 0.502732)
+texture = ExtResource("3_nfu20")
+
+[node name="Terotierra" parent="." instance=ExtResource("6_mu2ye")]
+input_pickable = true
+
+[node name="terovuela" parent="." instance=ExtResource("5_bhd4n")]
+
+[node name="Path2D" type="Path2D" parent="."]
+physics_interpolation_mode = 1
+visible = false
+position = Vector2(57, 91)
+curve = SubResource("Curve2D_3f106")
+script = ExtResource("5_5svby")
+
+[node name="Piso del mundo" parent="." instance=ExtResource("8_ttrht")]
+position = Vector2(682, 616)

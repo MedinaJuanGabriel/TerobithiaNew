@@ -1,0 +1,65 @@
+[gd_scene load_steps=12 format=3 uid="uid://dhcgkp1umiljy"]
+
+[ext_resource type="Script" path="res://scripts/escena_principal.gd" id="1_wfdp1"]
+[ext_resource type="PackedScene" uid="uid://cpjvxkvuwqd5e" path="res://scenes/fondo_completo.tscn" id="2_4tq8y"]
+[ext_resource type="PackedScene" uid="uid://c0s5jyq6gm3aq" path="res://scenes/rama.tscn" id="4_1sdf8"]
+[ext_resource type="PackedScene" uid="uid://6tktwxns42wv" path="res://scenes/tero_alarma.tscn" id="4_o36iv"]
+[ext_resource type="Texture2D" uid="uid://crhk01pus0d1i" path="res://Assets/nido estado 1.png" id="5_pnspi"]
+[ext_resource type="PackedScene" uid="uid://dtwny4fi1er08" path="res://scenes/tero_tierra.tscn" id="6_bil84"]
+[ext_resource type="PackedScene" uid="uid://c1s0t4chcknpr" path="res://scenes/tero_aereo.tscn" id="7_gkwsp"]
+[ext_resource type="PackedScene" uid="uid://c4y12ony026jx" path="res://scenes/Plataforma.tscn" id="9_r54rh"]
+[ext_resource type="PackedScene" uid="uid://5c7t0ekhjym3" path="res://scenes/Aguila.tscn" id="10_vw5bb"]
+[ext_resource type="PackedScene" uid="uid://dr58wgkxrct6n" path="res://huevo.tscn" id="11_gbn33"]
+[ext_resource type="PackedScene" uid="uid://cds8n8gqsfeuc" path="res://scenes/Zorrillo.tscn" id="12_5abq6"]
+
+[node name="Escena_principal" type="Node2D"]
+script = ExtResource("1_wfdp1")
+
+[node name="TimerAtaques" type="Timer" parent="."]
+wait_time = 22.5
+autostart = true
+
+[node name="TimerDia" type="Timer" parent="."]
+wait_time = 180.0
+one_shot = true
+autostart = true
+
+[node name="FondoCompleto" parent="." instance=ExtResource("2_4tq8y")]
+
+[node name="Piso del mundo" parent="." instance=ExtResource("9_r54rh")]
+position = Vector2(682, 616)
+
+[node name="Rama" parent="." instance=ExtResource("4_1sdf8")]
+position = Vector2(-71, -136)
+rotation = -0.0698132
+
+[node name="Alarma" parent="." instance=ExtResource("4_o36iv")]
+position = Vector2(671, 824)
+scale = Vector2(1.5, 1.5)
+
+[node name="NidoComún" type="Sprite2D" parent="."]
+position = Vector2(675, 894)
+scale = Vector2(0.103472, 0.150391)
+texture = ExtResource("5_pnspi")
+
+[node name="Zorrillo" parent="." instance=ExtResource("12_5abq6")]
+
+[node name="Aguila" parent="." instance=ExtResource("10_vw5bb")]
+
+[node name="Terotierra" parent="." instance=ExtResource("6_bil84")]
+input_pickable = true
+
+[node name="terovuela" parent="." instance=ExtResource("7_gkwsp")]
+
+[node name="Huevos" type="Node2D" parent="."]
+
+[node name="Huevo2" parent="Huevos" instance=ExtResource("11_gbn33")]
+position = Vector2(700, 901)
+scale = Vector2(0.119, 0.117)
+
+[node name="Huevo3" parent="Huevos" instance=ExtResource("11_gbn33")]
+position = Vector2(647, 902)
+scale = Vector2(0.119, 0.117)
+
+[node name="Huevo" parent="Huevos" instance=ExtResource("11_gbn33")]
+position = Vector2(674, 899)

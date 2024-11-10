@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ult53ixvugoo"]
+
+[ext_resource type="Texture2D" uid="uid://4cskmvv424er" path="res://Assets/Arbol.webp" id="1_1gvde"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rgu1i"]
+size = Vector2(80, 159)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(327, 366.5)
+shape = SubResource("RectangleShape2D_rgu1i")
+
+[node name="Arbol" type="Sprite2D" parent="."]
+position = Vector2(354, 310)
+texture = ExtResource("1_1gvde")

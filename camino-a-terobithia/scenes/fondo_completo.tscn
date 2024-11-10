@@ -1,0 +1,111 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpjvxkvuwqd5e"]
+
+[ext_resource type="Texture2D" uid="uid://c350y6n47rnql" path="res://Assets/Fondo/Fondodia.png" id="1_5lgi7"]
+[ext_resource type="Texture2D" uid="uid://dq66b3cbpkel" path="res://Assets/Fondo/Sol.png" id="2_arepb"]
+[ext_resource type="Texture2D" uid="uid://famk2qxcqq2p" path="res://Assets/Fondo/Luna.png" id="3_08aj3"]
+
+[sub_resource type="Animation" id="Animation_tcu3g"]
+resource_name = "Ciclo día noche"
+length = 180.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 50.0333, 115, 179.867),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.705882, 0.968627, 1), Color(0.670588, 0.262745, 0.658824, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sol:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 30, 50.0333, 57, 136.4, 137.633, 138.1, 138.9, 170),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1426.99, 4.01561), Vector2(-4.003, -120), Vector2(1435, -26.1015), Vector2(2439.69, 4.01562), Vector2(3040.11, 2172.45), Vector2(-3356.33, 2319.02), Vector2(-2914.02, -22.0859), Vector2(-1426.99, 4.01561), Vector2(-4.003, -120)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Luna:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(55.3333, 69.1, 105, 133.733, 144.533),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1525.06, -353.375), Vector2(-566.393, -385.5), Vector2(430.299, -353.375), Vector2(1186.82, -359.398), Vector2(2361.64, -365.421)]
+}
+
+[sub_resource type="Animation" id="Animation_oi53b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sol:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1426.99, 156.609)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Luna:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1525.06, -353.375)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1b7k3"]
+_data = {
+"Ciclo día noche": SubResource("Animation_tcu3g"),
+"RESET": SubResource("Animation_oi53b")
+}
+
+[node name="FondoCompleto" type="Sprite2D"]
+position = Vector2(720, 512)
+scale = Vector2(0.499653, 0.498055)
+texture = ExtResource("1_5lgi7")
+
+[node name="Sol" type="Sprite2D" parent="."]
+position = Vector2(-1426.99, 156.609)
+scale = Vector2(1.00139, 1)
+texture = ExtResource("2_arepb")
+
+[node name="Luna" type="Sprite2D" parent="."]
+position = Vector2(-1525.06, -353.375)
+scale = Vector2(0.679777, 0.667658)
+texture = ExtResource("3_08aj3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1b7k3")
+}
+autoplay = "Ciclo día noche"

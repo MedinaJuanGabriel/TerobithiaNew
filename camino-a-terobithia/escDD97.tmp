@@ -1,0 +1,104 @@
+[gd_scene load_steps=15 format=3 uid="uid://dhcgkp1umiljy"]
+
+[ext_resource type="Texture2D" uid="uid://tlou6j67kmmk" path="res://fondo.png" id="1_ssoju"]
+[ext_resource type="Texture2D" uid="uid://111g4f8i3b36" path="res://fondo completo.png" id="2_s8udh"]
+[ext_resource type="Texture2D" uid="uid://bknjj6wsbu0jg" path="res://Nido común.png" id="3_nfu20"]
+[ext_resource type="Texture2D" uid="uid://h6p0aaj3ny8v" path="res://tero vuela.png" id="4_2ux53"]
+[ext_resource type="Script" path="res://terovuela.gd" id="4_e7qvu"]
+[ext_resource type="Texture2D" uid="uid://cyomcj28n86iu" path="res://terotierra.png" id="5_2j16j"]
+[ext_resource type="Texture2D" uid="uid://7c5ej2mjri4s" path="res://teroalarma.png" id="6_hij80"]
+[ext_resource type="Texture2D" uid="uid://4cskmvv424er" path="res://Arbol.webp" id="7_8ap2u"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1xejl"]
+radius = 12.796
+height = 63.2258
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_adljn"]
+radius = 19.3302
+height = 47.7419
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebm8v"]
+radius = 6.73027
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xg2ur"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a0ora"]
+distance = -128.498
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtvg1"]
+size = Vector2(46.0388, 301.532)
+
+[node name="Escena_principal" type="Node2D"]
+
+[node name="Fondo" type="Sprite2D" parent="."]
+position = Vector2(575.5, 321.5)
+scale = Vector2(2.60722, 2.30742)
+texture = ExtResource("1_ssoju")
+
+[node name="FondoCompleto" type="Sprite2D" parent="Fondo"]
+position = Vector2(3.05176e-05, 3.43323e-05)
+scale = Vector2(1.40878, 1.34349)
+texture = ExtResource("2_s8udh")
+
+[node name="NidoComún" type="Sprite2D" parent="Fondo/FondoCompleto"]
+position = Vector2(-3.94772, 90.4838)
+scale = Vector2(0.110993, 0.130851)
+texture = ExtResource("3_nfu20")
+
+[node name="terovuela" type="CharacterBody2D" parent="Fondo/FondoCompleto"]
+position = Vector2(-22.8695, -8.06451)
+script = ExtResource("4_e7qvu")
+metadata/Terovuelascript = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Fondo/FondoCompleto/terovuela"]
+position = Vector2(-86.7135, -5.32262)
+scale = Vector2(0.370914, 0.363354)
+texture = ExtResource("4_2ux53")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fondo/FondoCompleto/terovuela"]
+position = Vector2(-84.5354, -12.4194)
+shape = SubResource("CapsuleShape2D_1xejl")
+
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="Fondo/FondoCompleto"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Fondo/FondoCompleto/CharacterBody2D2"]
+position = Vector2(-75.0065, 66.9355)
+scale = Vector2(0.370914, 0.363354)
+texture = ExtResource("5_2j16j")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fondo/FondoCompleto/CharacterBody2D2"]
+position = Vector2(-74.462, 68.8709)
+shape = SubResource("CapsuleShape2D_adljn")
+
+[node name="CharacterBody2D3" type="CharacterBody2D" parent="Fondo/FondoCompleto"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Fondo/FondoCompleto/CharacterBody2D3"]
+position = Vector2(-5.58124, 71.6875)
+scale = Vector2(0.370914, 0.298979)
+texture = ExtResource("6_hij80")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fondo/FondoCompleto/CharacterBody2D3"]
+position = Vector2(-11.2986, 66.6129)
+shape = SubResource("CircleShape2D_ebm8v")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Fondo"]
+physics_material_override = SubResource("PhysicsMaterial_xg2ur")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fondo/StaticBody2D"]
+position = Vector2(-8.62985, -1.95022)
+shape = SubResource("WorldBoundaryShape2D_a0ora")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(100.625, 380.398)
+rotation = 1.54156
+shape = SubResource("RectangleShape2D_vtvg1")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(218, 386.5)
+rotation = 1.54459
+scale = Vector2(0.701788, 1.69615)
+texture = ExtResource("7_8ap2u")
